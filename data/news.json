@@ -1,6 +1,28 @@
 {
   "articles": [
     {
+      "id": "de8784b6-b2db-4ebe-88fc-f68988b3ff69",
+      "title": "SoterCare at National Science Week 2026 – Science to Market Exchange",
+      "slug": "sotercare-at-national-science-week-2026-science-to-market-exchange",
+      "summary": "SoterCare participated in National Science Week 2026 – Science to Market Exchange, held from 13th to 15th November 2026, at Stall SM-09. We had the opportunity to showcase our elderly care monitoring solution, connect with investors, healthcare professionals, and visitors, gather valuable feedback, and explore potential collaborations.",
+      "body": "We were pleased to showcase SoterCare at National Science Week 2026 – Science to Market Exchange, held from 13th to 15th November 2026.\n\nOur team arrived early each morning to set up our stall (SM-09) and get ready to welcome visitors. Throughout the event, we had the opportunity to meet and speak with a diverse group of people, including individuals interested in our solution, curious visitors, potential investors, and medical professionals.\n\nWe introduced SoterCare and demonstrated how our privacy-focused elderly care monitoring ecosystem works. The conversations gave us the opportunity to understand different perspectives, receive feedback from healthcare professionals and other visitors, discuss potential collaborations, and explore opportunities to take the project further.\n\nA special thank you to the National Innovation Agency (NIA) for organising the event and looking after us throughout the exhibition. We truly appreciate the support and arrangements provided to participating teams.\n\nWe also received a certificate of participation at the conclusion of the event.\n\nOverall, it was a valuable opportunity for us to present SoterCare to a wider audience, connect with people from different backgrounds, and gain insights that will help us move forward.",
+      "bodyBlocks": [
+        {
+          "type": "text",
+          "content": "We were pleased to showcase SoterCare at National Science Week 2026 – Science to Market Exchange, held from 13th to 15th November 2026.\n\nOur team arrived early each morning to set up our stall (SM-09) and get ready to welcome visitors. Throughout the event, we had the opportunity to meet and speak with a diverse group of people, including individuals interested in our solution, curious visitors, potential investors, and medical professionals.\n\nWe introduced SoterCare and demonstrated how our privacy-focused elderly care monitoring ecosystem works. The conversations gave us the opportunity to understand different perspectives, receive feedback from healthcare professionals and other visitors, discuss potential collaborations, and explore opportunities to take the project further.\n\nA special thank you to the National Innovation Agency (NIA) for organising the event and looking after us throughout the exhibition. We truly appreciate the support and arrangements provided to participating teams.\n\nWe also received a certificate of participation at the conclusion of the event.\n\nOverall, it was a valuable opportunity for us to present SoterCare to a wider audience, connect with people from different backgrounds, and gain insights that will help us move forward."
+        }
+      ],
+      "date": "2026-11-15",
+      "coverImage": "/images/news/edited-image-11.webp",
+      "tags": [
+        "National Science Week 2026",
+        "NIA",
+        "Healthcare Innovation",
+        "Science to Market Exchange"
+      ],
+      "pinned": false
+    },
+    {
       "id": "763f36cf-fcf6-467c-b3ad-ecb128f5ba0e",
       "title": "SoterCare Secures 1st Runner-Up at SLASSCOM Xcellerate 2026",
       "slug": "sotercare-secures-1st-runner-up-at-slasscom-xcellerate-2026",
@@ -138,29 +160,6 @@
         {
           "type": "text",
           "content": "Team SoterCare is proud to announce its selection as a finalist in the National Innovation Agency (NIA) Innovation Voucher Programme 2026 under the University Voucher category.\n\nAs part of the final evaluation process, our team had the opportunity to present SoterCare during the live pitch session before an expert evaluation panel. The experience allowed us to showcase our vision, demonstrate our technology, receive valuable feedback from industry professionals, and represent our university on a national stage.\n\nReaching this milestone reflects the dedication, collaboration, and hard work of everyone involved in the project. We are sincerely grateful to our mentors, supporters, and everyone who has contributed to our journey.\n\nWe now look forward to the final results and remain committed to developing innovative technologies that create meaningful impact in healthcare and improve lives through accessible, intelligent solutions."
-        }
-      ]
-    },
-    {
-      "id": "d28aa6a9-b796-45b8-920c-416840c83cb4",
-      "title": "Team SoterCare Named a Finalist at CodeSprint 11",
-      "slug": "team-sotercare-named-a-finalist-at-codesprint-11",
-      "summary": "Team SoterCare has been named one of the finalists advancing to the CodeSprint 11 Finale, the annual inter-university coding and innovation competition organised by the IEEE Student Branch.",
-      "body": "CodeSprint 11 revealed its finalist lineup, and we're thrilled to share that SoterCare has earned its place among the 7 teams heading to the Finale. The competition has been a great platform to benchmark our solution, sharpen our thinking, and connect with some of the brightest student innovators in the country.\n\nWhat makes this milestone meaningful is not just the selection itself, but the journey that led here. Every iteration of our solution, every piece of feedback we incorporated, every late night spent refining our approach, all of it contributed to where we stand today.\n\nWe are grateful to everyone who has supported and believed in us along the way.\nMore to come. Stay tuned.",
-      "date": "2026-06-23",
-      "coverImage": "/images/news/edited-image-2.webp",
-      "tags": [
-        "Team SoterCare",
-        "CodeSprint 11",
-        "IEEE",
-        "Finalist",
-        "Startup"
-      ],
-      "pinned": false,
-      "bodyBlocks": [
-        {
-          "type": "text",
-          "content": "CodeSprint 11 revealed its finalist lineup, and we're thrilled to share that SoterCare has earned its place among the 7 teams heading to the Finale. The competition has been a great platform to benchmark our solution, sharpen our thinking, and connect with some of the brightest student innovators in the country.\n\nWhat makes this milestone meaningful is not just the selection itself, but the journey that led here. Every iteration of our solution, every piece of feedback we incorporated, every late night spent refining our approach, all of it contributed to where we stand today.\n\nWe are grateful to everyone who has supported and believed in us along the way.\nMore to come. Stay tuned."
         }
       ]
     },
