@@ -1,6 +1,6 @@
-# SoterCare — Website & Web Dashboard
+# sotercare-website
 
-The Next.js application behind **[sotercare.com](https://sotercare.com)**. It serves three things: the public product site, the [SoterCare Developers](https://sotercare.com/community) community page, and an authenticated dashboard for live monitoring data.
+The Next.js marketing site behind **[sotercare.com](https://sotercare.com)**: the B2B care-home product site, news, the [SoterCare Developers](https://sotercare.com/community) community page, the pitch page and the Book a demo popup. The repo was renamed from `web-dev-v2`. The care-home dashboard was removed from here (`e88ba1e`) and now lives in the separate `sotercare-console` repo.
 
 Built collaboratively by student developers. See [SoterCare Developers](https://github.com/SoterCare/community) for the community behind it.
 
@@ -10,8 +10,9 @@ Built collaboratively by student developers. See [SoterCare Developers](https://
 - **Community page** — [`/community`](https://sotercare.com/community): the student developer community, its events, impact figures, partners, and GitHub links
 - **News** — [`/news`](https://sotercare.com/news) index and per-article pages, statically generated from a JSON-backed store
 - **Newsroom editor** — `/editnews`, a protected editor for creating and updating articles, with image cropping
-- **Web dashboard** — `/dashboard`, authenticated; live vitals over Socket.IO, alerts, device list, activity timeline, and a recycle bin
-- **SEO** — generated `sitemap.xml` and `robots.txt`, JSON-LD structured data, per-route metadata
+- **Pitch page** — `/pitch`, the pitch deck viewer
+- **Book a demo, newsletter and waitlist** — popups backed by server actions
+- **SEO** — generated `sitemap.xml` and `robots.txt`, `llms.txt`, JSON-LD structured data, per-route metadata
 - **Email** — transactional sending via Resend with React Email templates
 
 ## Tech stack
@@ -22,7 +23,6 @@ Built collaboratively by student developers. See [SoterCare Developers](https://
 | Language | **TypeScript** |
 | Styling | **Tailwind CSS** · `styled-components` |
 | Animation | **GSAP** + `@gsap/react` · **Lenis** smooth scroll |
-| Realtime | **socket.io-client** |
 | Email | **Resend** + `@react-email/components` |
 | Icons | **lucide-react** |
 | Analytics | **@vercel/analytics** |
@@ -35,12 +35,13 @@ src/
     page.tsx            homepage
     community/          community page
     news/               news index + [slug] article pages
-    dashboard/          authenticated dashboard (login, timeline, recycle-bin)
+    pitch/              pitch page
     editnews/           newsroom editor
-    api/                alerts · auth · dashboard · devices · me · timeline
+    actions.ts          server actions (newsletter, waitlist, Book a demo e-mails via Resend)
+    llms.txt            llms.txt for AI crawlers
     sitemap.ts          generated sitemap
     robots.ts           generated robots.txt
-  components/           page sections, popups, and dashboard widgets
+  components/           page sections and popups
   lib/                  data access helpers (news store, etc.)
 data/
   news.json             news article source of truth
@@ -50,13 +51,13 @@ public/assets/          images, logos, and event photos
 ## Running locally
 
 ```bash
-git clone https://github.com/SoterCare/web-dev-v2.git
-cd web-dev-v2
+git clone https://github.com/SoterCare/sotercare-website.git
+cd sotercare-website
 npm install
 npm run dev             # http://localhost:3000
 ```
 
-Dashboard and email features need environment variables (API endpoint, auth secret, Resend key). Without them the public pages still render; the dashboard will not authenticate.
+Email features need environment variables (for example the Resend key). Without them the public pages still render.
 
 ## Scripts
 
@@ -69,11 +70,11 @@ npm run lint     # ESLint
 
 ## Contributors
 
-Built by student developers in the SoterCare Developers community — Daham, Hirusha, Komudi, Kaweesha, Nimna, and Sanjula. See the [contributors graph](https://github.com/SoterCare/web-dev-v2/graphs/contributors) for the full record.
+Built by student developers in the SoterCare Developers community — Daham, Hirusha, Komudi, Kaweesha, Nimna, and Sanjula. See the [contributors graph](https://github.com/SoterCare/sotercare-website/graphs/contributors) for the full record.
 
 ## Related repositories
 
-- [Mobile_App](https://github.com/SoterCare/Mobile_App) — the React Native (Expo) mobile client
+- [sotercare-links](https://github.com/SoterCare/sotercare-links) — links.sotercare.com
 - [community](https://github.com/SoterCare/community) — events, guides, and how to get involved
 
 ---

@@ -29,12 +29,15 @@ It was renamed from `web-dev-v2` with its full history. The B2B plan for this re
 
 ## How the SoterCare B2B platform fits together
 
-**Plan:** `D:\SoterCare\Github-B2B\b2b-plan\` (v2: docs 01–20, one topic per file; not in a repo yet).
+**Plan:** `D:\SoterCare\Github-B2B\b2b-plan\` (v2: docs 01–20, one topic per file). It lives only on the local disk for now; a private `sotercare-docs` repo is proposed so SerenEdge can link it (O-19).
 - Start with `README.md`, `01-Product-and-Scope.md` and `02-System-Architecture.md`.
 - Which docs this repo needs: `16-Repos-and-Ownership.md` §3.
-- `D-xx` / `O-x` refer to `19-Decisions-and-Open-Items.md`.
+- `D-xx` / `O-x` refer to `19-Decisions-and-Open-Items.md`, the decision log. **When docs disagree, 19 wins.**
 - Old code to start from: `17-Old-Code-Carry-Over.md`.
-- Build order and checkpoints: `18-Build-Plan-2-Weeks.md`.
+- Build order and checkpoints: `18-Build-Plan-2-Weeks.md`:
+  - a Day 0 gate, then daily integration checkpoints;
+  - **Day 14 = release candidate (RC)** of the full software system on simulators, ESP32-C6 dev kits and a Pi 5 gateway (D-77);
+  - then a scheduled **follow-on** (weeks 3–4, Days 15–24 in each repo's `docs/plan.md`) before a separate pilot gate.
 
 ```
 sotercare-pcb-designs ── Rev A board ──► sotercare-firmware (thigh band)
@@ -65,7 +68,7 @@ sotercare-website (sotercare.com), sotercare-links (links.sotercare.com): standa
 - **Build from the old repos' work** (D-20), keeping git history.
 
 **Git and commits:**
-- Trunk-based, protected `main`, PRs with CI (lint, typecheck, tests, contract tests).
+- Protected `main`, PRs with CI (lint, typecheck, tests, contract tests against the pinned contracts version). SerenEdge tasks merge to `dev`; a release PR moves `dev` → `main` (O-23).
 - Conventional commits (`feat:`, `fix:`, `docs:`…).
 - **Never add `Co-Authored-By:` or any AI-attribution trailer to commits.**
 - No secrets in git; AWS Secrets Manager in the cloud.
