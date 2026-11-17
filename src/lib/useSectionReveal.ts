@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Same fade-up used by Features, Pricing, FAQ and Product today.
+// Same fade-up used by Features, FAQ and Product today.
 export function useSectionReveal(
   sectionRef: RefObject<HTMLElement | null>,
   contentRef: RefObject<HTMLElement | null>,

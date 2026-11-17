@@ -17,13 +17,9 @@ export default function NewsletterPopup() {
             return
         }
 
-        const pricingSection = document.getElementById("pricing")
-        if (!pricingSection) {
-            // Fallback to timer if pricing section not found? Or just return?
-            // Let's fallback for safety or just return. Returning is safer to avoid unexpected popups.
-            // Actually, let's just log it or do nothing.
-            return
-        }
+        // Opens once the visitor has scrolled past the FAQ section.
+        const triggerSection = document.getElementById("faqs")
+        if (!triggerSection) return
 
         const observer = new IntersectionObserver((entries) => {
             const entry = entries[0]
@@ -38,7 +34,7 @@ export default function NewsletterPopup() {
             threshold: 0
         })
 
-        observer.observe(pricingSection)
+        observer.observe(triggerSection)
 
         return () => observer.disconnect()
     }, [])

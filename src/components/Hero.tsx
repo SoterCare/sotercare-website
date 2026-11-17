@@ -86,7 +86,7 @@ const Hero = () => {
           {/* Dotted grid — continues the page texture through the hero surface */}
           <div className="absolute inset-0 z-0 bg-[radial-gradient(#e5e7eb_2px,transparent_1px)] [background-size:32px_32px] pointer-events-none" />
 
-          {/* Soft powder-blue ambient glow (matches Pricing's blur blobs) */}
+          {/* Soft powder-blue ambient glow */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             {/* A gradient, not blur(): a large blur filter is very slow to repaint in iPhone Safari. */}
             <div className="absolute -top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[900px] bg-[radial-gradient(circle,rgba(160,203,219,0.2)_0%,rgba(160,203,219,0.1)_40%,transparent_70%)]" />

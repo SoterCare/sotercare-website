@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import NewsTopBar from '@/components/NewsTopBar';
+import Navbar from '@/components/Navbar';
 import FooterSimple from '@/components/FooterSimple';
 import {
   Github,
@@ -215,7 +215,7 @@ export default function CommunityPage() {
       />
 
       <div className="relative z-10">
-        <NewsTopBar backHref="/" backLabel="Back to SoterCare" />
+        <Navbar />
 
         {/* ── HERO ── */}
         <section className="relative pt-28 sm:pt-32 md:pt-40 pb-16 md:pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">

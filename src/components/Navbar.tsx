@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import gsap from "gsap";
@@ -10,9 +11,51 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const NAV = [
+  { key: "how-it-works", href: "#how-it-works", label: "How it works" },
+  { key: "faqs", href: "#faqs", label: "FAQs" },
+  { key: "team", href: "#team", label: "Team" },
+  { key: "community", href: "/community", label: "Community" },
+  { key: "news", href: "/news", label: "News" },
+];
+
 const Navbar = () => {
+  const pathname = usePathname();
+  const home = pathname === "/" ? "" : "/";
   const [isOpen, setIsOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
+  const [section, setSection] = useState<string | null>(null);
+
+  // Which nav item is current: the page for /community and /news, otherwise (on the home page)
+  // the section nearest the middle of the screen.
+  const active =
+    pathname.startsWith("/community") ? "community"
+    : pathname.startsWith("/news") ? "news"
+    : pathname === "/" ? section
+    : null;
+
+  useEffect(() => {
+    if (pathname !== "/") return;
+    const ids = ["how-it-works", "faqs", "team"];
+    const update = () => {
+      const mid = window.innerHeight * 0.4;
+      let current: string | null = null;
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const r = el.getBoundingClientRect();
+        if (r.top <= mid && r.bottom > mid) current = id;
+      }
+      setSection(current);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [pathname]);
   const videoActiveRef = useRef(false); // Use ref so scroll handler sees latest state
   const navRef = useRef<HTMLElement>(null);
 
@@ -87,7 +130,7 @@ const Navbar = () => {
       >
         {/* Logo */}
         <div className="flex-shrink-0 flex items-center">
-          <Link href="#" className="flex items-center gap-2" scroll={false}>
+          <Link href={`${home}#`} className="flex items-center gap-2" scroll={false}>
             <Image
               src="/assets/SoterCare-Primary-logo-brandblue.webp"
               alt="SoterCare - smart care monitoring for care homes"
@@ -103,12 +146,21 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
-          <Link href="#how-it-works" className="transition-colors text-base font-medium text-[#797979] hover:text-black" scroll={false}>How it works</Link>
-          <Link href="#pricing" className="transition-colors text-base font-medium text-[#797979] hover:text-black" scroll={false}>Pricing</Link>
-          <Link href="#faqs" className="transition-colors text-base font-medium text-[#797979] hover:text-black" scroll={false}>FAQs</Link>
-          <Link href="#team" className="transition-colors text-base font-medium text-[#797979] hover:text-black" scroll={false}>Team</Link>
-          <Link href="/community" className="transition-colors text-base font-medium text-[#797979] hover:text-black" scroll={false}>Community</Link>
-          <Link href="/news" className="transition-colors text-base font-medium text-[#3d7e93] hover:text-black"><span className="news-heartbeat">News</span></Link>
+          {NAV.map(({ key, href, label }) => (
+            <Link
+              key={key}
+              href={href.startsWith("#") ? `${home}${href}` : href}
+              scroll={false}
+              aria-current={active === key ? "page" : undefined}
+              className={`relative py-1 transition-colors text-base font-medium ${active === key ? "text-black" : key === "news" ? "text-[#3d7e93] hover:text-black" : "text-[#797979] hover:text-black"}`}
+            >
+              {key === "news" ? <span className="news-heartbeat">{label}</span> : label}
+              <span
+                aria-hidden
+                className={`absolute left-1/2 -bottom-1 h-[3px] -translate-x-1/2 rounded-full bg-[#3d7e93] transition-all duration-300 ${active === key ? "w-5 opacity-100" : "w-0 opacity-0"}`}
+              />
+            </Link>
+          ))}
         </div>
 
         {/* CTA Button */}
@@ -135,52 +187,21 @@ const Navbar = () => {
       <div
         className={`absolute top-full mt-2 left-0 w-full bg-bg-card shadow-m border border-white/10 rounded-[2rem] p-6 flex flex-col gap-4 overflow-hidden transition-all duration-300 origin-top ${isOpen ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 -translate-y-4 pointer-events-none"}`}
       >
-        <Link
-          href="#how-it-works"
-          className="text-text-muted hover:text-text hover:bg-black/5 px-4 py-3 rounded-xl transition-all font-medium text-lg text-center"
-          onClick={() => setIsOpen(false)}
-          scroll={false}
-        >
-          How it works
-        </Link>
-        <Link
-          href="#pricing"
-          className="text-text-muted hover:text-text hover:bg-black/5 px-4 py-3 rounded-xl transition-all font-medium text-lg text-center"
-          onClick={() => setIsOpen(false)}
-          scroll={false}
-        >
-          Pricing
-        </Link>
-        <Link
-          href="#faqs"
-          className="text-text-muted hover:text-text hover:bg-black/5 px-4 py-3 rounded-xl transition-all font-medium text-lg text-center"
-          onClick={() => setIsOpen(false)}
-          scroll={false}
-        >
-          FAQs
-        </Link>
-        <Link
-          href="#team"
-          className="text-text-muted hover:text-text hover:bg-black/5 px-4 py-3 rounded-xl transition-all font-medium text-lg text-center"
-          onClick={() => setIsOpen(false)}
-          scroll={false}
-        >
-          Team
-        </Link>
-        <Link
-          href="/community"
-          className="text-text-muted hover:text-text hover:bg-black/5 px-4 py-3 rounded-xl transition-all font-medium text-lg text-center"
-          onClick={() => setIsOpen(false)}
-        >
-          Community
-        </Link>
-        <Link
-          href="/news"
-          className="text-[#3d7e93] hover:text-text hover:bg-black/5 px-4 py-3 rounded-xl transition-all font-medium text-lg text-center"
-          onClick={() => setIsOpen(false)}
-        >
-          <span className="news-heartbeat">News</span>
-        </Link>
+        {NAV.map(({ key, href, label }) => (
+          <Link
+            key={key}
+            href={href.startsWith("#") ? `${home}${href}` : href}
+            scroll={false}
+            aria-current={active === key ? "page" : undefined}
+            onClick={() => setIsOpen(false)}
+            className={`hover:text-text hover:bg-black/5 px-4 py-3 rounded-xl transition-all font-medium text-lg text-center ${active === key ? "bg-black/5 text-text font-bold" : key === "news" ? "text-[#3d7e93]" : "text-text-muted"}`}
+          >
+            <span className="inline-flex items-center gap-2">
+              {active === key && <span aria-hidden className="h-2 w-2 rounded-full bg-[#3d7e93]" />}
+              {key === "news" ? <span className="news-heartbeat">{label}</span> : label}
+            </span>
+          </Link>
+        ))}
         <button
           className="bg-bg-panel shadow-m text-text px-6 py-3 rounded-xl font-bold text-lg text-center mt-2 transition-all active:scale-95"
           onClick={() => {

@@ -120,6 +120,7 @@ import JsonLd from "@/components/JsonLd";
 import HashScroll from "@/components/HashScroll";
 import VideoPopup from "@/components/VideoPopup";
 import ContactPopup from "@/components/ContactPopup";
+import PageTransition from "@/components/PageTransition";
 
 export default function RootLayout({
   children,
@@ -158,6 +159,7 @@ export default function RootLayout({
         <NewsletterPopup />
         <VideoPopup />
         <ContactPopup />
+        <PageTransition />
         {children}
         <Analytics />
       </body>

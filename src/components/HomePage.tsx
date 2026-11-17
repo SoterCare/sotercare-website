@@ -13,7 +13,6 @@ import SplashScreen from '@/components/SplashScreen';
 import Hero from '@/components/Hero';
 import Mission from '@/components/Mission';
 import HowItWorks from '@/components/HowItWorks';
-import Pricing from '@/components/Pricing';
 import LatestNews from '@/components/LatestNews';
 import FAQ from '@/components/FAQ';
 import Team from '@/components/Team';
@@ -56,7 +55,6 @@ export default function HomePage() {
         <LatestNews />
       </Mission>
       <HowItWorks />
-      <Pricing />
       <FAQ />
       <Team />
       <Footer />
