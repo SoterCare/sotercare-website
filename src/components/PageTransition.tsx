@@ -58,20 +58,20 @@ export default function PageTransition() {
   };
 
   // Resolves once the page behind the panel has painted: two frames, fonts, and the images in
-  // (or near) the first screen. Capped so a slow image can never keep the panel up for long.
+  // the first screen (lazy ones are skipped, they haven't started loading). Capped at 0.8s so a slow image can't hold the panel up.
   const whenPageReady = async () => {
     const frame = () => new Promise<void>((r) => requestAnimationFrame(() => r()));
     await frame();
     await frame();
     const imgs = Array.from(document.images).filter((img) => {
       const rect = img.getBoundingClientRect();
-      return rect.top < window.innerHeight * 1.5 && !img.complete;
+      return rect.top < window.innerHeight && rect.bottom > 0 && !img.complete && img.loading !== "lazy";
     });
     const settle = Promise.all([
       document.fonts?.ready ?? Promise.resolve(),
       ...imgs.map((img) => img.decode().catch(() => undefined)),
     ]);
-    await Promise.race([settle, new Promise((r) => setTimeout(r, 2500))]);
+    await Promise.race([settle, new Promise((r) => setTimeout(r, 800))]);
     await frame();
   };
 

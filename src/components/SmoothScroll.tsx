@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import Lenis from 'lenis';
+import { getJumpTarget } from '@/lib/jumpTarget';
 
 export default function SmoothScroll() {
     useEffect(() => {
@@ -36,9 +37,9 @@ export default function SmoothScroll() {
                     if (href === '#') {
                         lenis.scrollTo(0);
                     } else {
-                        const element = document.querySelector(href) as HTMLElement;
-                        if (element) {
-                            lenis.scrollTo(element);
+                        const target = getJumpTarget(href.slice(1));
+                        if (target) {
+                            lenis.scrollTo(target.el, { offset: target.offset });
                         }
                     }
                 }

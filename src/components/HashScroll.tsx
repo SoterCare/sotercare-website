@@ -2,13 +2,12 @@
 
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import { getJumpTarget } from '@/lib/jumpTarget';
 
 function scrollToTarget(id: string) {
-  const el = document.getElementById(id);
-  if (!el) return false;
-  const nav = document.querySelector('[data-site-navbar]') as HTMLElement | null;
-  const offset = nav ? nav.getBoundingClientRect().bottom + 16 : 0;
-  const y = el.getBoundingClientRect().top + window.scrollY - offset;
+  const target = getJumpTarget(id);
+  if (!target) return false;
+  const y = target.el.getBoundingClientRect().top + window.scrollY + target.offset;
   window.scrollTo({ top: y, behavior: 'smooth' });
   return true;
 }

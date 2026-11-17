@@ -122,6 +122,7 @@ const Navbar = () => {
   return (
     <nav
       ref={navRef}
+      data-site-navbar
       className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-4xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isHidden ? "-translate-y-[150%]" : "translate-y-0"
         }`}
     >
