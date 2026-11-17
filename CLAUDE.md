@@ -29,38 +29,43 @@ It was renamed from `web-dev-v2` with its full history. The B2B plan for this re
 
 ## How the SoterCare B2B platform fits together
 
-**Plan:** `D:\SoterCare\Github-B2B\b2b-plan\` (docs 01–07; not in a repo yet).
-- `D-xx` refers to its decision log and `O-x` to its open items (`04-Repos-and-Roadmap.md` §5).
-- `07-Old-Repo-Mapping.md` says which old code each repo starts from.
+**Plan:** `D:\SoterCare\Github-B2B\b2b-plan\` (v2: docs 01–20, one topic per file; not in a repo yet).
+- Start with `README.md`, `01-Product-and-Scope.md` and `02-System-Architecture.md`.
+- Which docs this repo needs: `16-Repos-and-Ownership.md` §3.
+- `D-xx` / `O-x` refer to `19-Decisions-and-Open-Items.md`.
+- Old code to start from: `17-Old-Code-Carry-Over.md`.
+- Build order and checkpoints: `18-Build-Plan-2-Weeks.md`.
 
 ```
-sotercare-pcb-designs ── board for ──► sotercare-firmware (thigh band, ~60 per facility)
-band ── facility Wi-Fi, local link (transport: open item O-5) ──► sotercare-edge-gateway (1 per facility)
+sotercare-pcb-designs ── Rev A board ──► sotercare-firmware (thigh band)
+band ── UDP + AES-CCM over facility Wi-Fi (06) ──► sotercare-edge-gateway (= nurse station, 1 per home)
 staff phones ◄── local MQTT over WSS (alerts, claims, presence) ── gateway
-gateway ── AWS IoT Core → SQS (alert-record, telemetry, heartbeat) ──► sotercare-backend
-backend ── record_ack, shadows (roster / bands / policy / keys), cmd/claim ──► gateway
-backend ── REST + Socket.IO ──► sotercare-console, sotercare-mobile
+gateway ── MQTT/TLS to AWS IoT Core → SQS (Wi-Fi or LTE) ──► sotercare-backend
+backend ── record_ack, shadows (roster / bands / residents / policy / keys / service), cmd/claim ──► gateway
+backend ── one RDS database per tenant (silo) + control DB
+backend ── REST + Socket.IO ──► sotercare-console (facility), sotercare-mobile (Care staff / Family)
+backend ── REST /v1/ops ──► sotercare-ops-console (SoterCare staff)
 backend ── SNS → APNs / FCM push ──► sotercare-mobile
-backend ── outbox → SQS events, S3 Parquet export, internal API ──► sotercare-agents
-agents ── outputs / proposals / case traces (internal API) ──► backend
-sotercare-contracts ── schemas + generated types ──► firmware, gateway, backend, agents, console, mobile
-sotercare-infra ── provisions and deploys ──► AWS (IoT Core, ECS, RDS, Cognito, SNS, S3, Bedrock)
-sotercare-studio ── records ──► sotercare-iot-dataset ── trains ──► sotercare-ml ── models ──► firmware, gateway
+backend ── outbox → SQS events, S3 Parquet, internal API ──► sotercare-agents (agents + ARIA)
+sotercare-contracts ── schemas + generated types ──► firmware, gateway, backend, agents, consoles, mobile
+sotercare-infra ── provisions AWS + per-tenant resources ──► all cloud parts
+sotercare-studio ── records ──► sotercare-iot-dataset (data + model training) ── gait model ──► gateway
 sotercare-website (sotercare.com), sotercare-links (links.sotercare.com): standalone
 ```
 
 **Platform rules (every repo):**
 - **The gateway is the only real-time safety rule engine and claim arbiter** (D-08).
-  - The cloud never derives fall / SOS / moisture alerts from telemetry.
+  - The cloud never derives alerts from telemetry.
   - Agents never create or change alerts.
-- **Wellness product** (D-06): no "medical", "diagnosis" or clinical-threshold wording in code, UI or docs.
-- **Every cross-repo message is defined in `sotercare-contracts`.** Pin a version and run contract tests. Never keep a local copy of a schema.
-- **Tenancy:** every record carries `org_id` (and `facility_id` where relevant). The backend enforces row-level security.
-- **AWS `ap-south-1`** (Mumbai). **Amazon Bedrock** is the only LLM provider (D-07).
-- **Build from the old repos' work** (D-20). Keep git history when moving code in. Rewrite only what the B2B design changes.
+- **Wellness wording** (D-06): no "medical", "diagnosis", "fever" or clinical thresholds.
+- **Every cross-repo message is defined in `sotercare-contracts`.** Pin a version and run contract tests; never copy schemas.
+- **Silo tenancy** (D-31): one tenant per request / case; never hold two tenants' data in one operation.
+- **AWS `ap-south-1`**; **Bedrock** is the only LLM provider (D-07).
+- **Translation-ready UI** (D-26): no hard-coded user-facing strings.
+- **Build from the old repos' work** (D-20), keeping git history.
 
 **Git and commits:**
 - Trunk-based, protected `main`, PRs with CI (lint, typecheck, tests, contract tests).
 - Conventional commits (`feat:`, `fix:`, `docs:`…).
 - **Never add `Co-Authored-By:` or any AI-attribution trailer to commits.**
-- No secrets in git. Use env files that are git-ignored locally, and AWS Secrets Manager in the cloud.
+- No secrets in git; AWS Secrets Manager in the cloud.
