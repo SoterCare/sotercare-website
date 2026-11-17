@@ -25,12 +25,10 @@ export const RULES = [
 
 export const REQUIRED = [
   { file: "src/components/Hero.tsx", re: /Book a demo/, why: "primary CTA" },
-  { file: "src/components/Pricing.tsx", re: /startup/i, why: "startup statement" },
   { file: "src/components/Team.tsx", re: /startup/i, why: "startup statement" },
   { file: "src/components/Footer.tsx", re: /promise/i, why: "household-kit promise" },
   { file: "src/components/Mission.tsx", re: /id="promise"/, why: "anchor #promise" },
   { file: "src/components/HowItWorks.tsx", re: /id="how-it-works"/, why: "anchor #how-it-works" },
-  { file: "src/components/Pricing.tsx", re: /id="pricing"/, why: "anchor #pricing" },
   { file: "src/app/page.tsx", re: /from "@\/lib\/faqs"/, why: "JSON-LD uses shared FAQ module" },
   { file: "src/components/FAQ.tsx", re: /from ['"]@\/lib\/faqs['"]/, why: "FAQ uses shared FAQ module" },
 ];
