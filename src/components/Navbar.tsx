@@ -113,12 +113,12 @@ const Navbar = () => {
 
         {/* CTA Button */}
         <div className="hidden md:flex items-center">
-          <Link
-            href="/dashboard"
+          <button
+            onClick={() => window.dispatchEvent(new Event("open-contact-popup"))}
             className="px-6 py-2 rounded-[1rem] font-bold text-base transition-all hover:scale-105 active:scale-95 bg-bg-card shadow-m text-text"
           >
-            Carer login
-          </Link>
+            Book a demo
+          </button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -181,13 +181,15 @@ const Navbar = () => {
         >
           <span className="news-heartbeat">News</span>
         </Link>
-        <Link
-          href="/dashboard"
+        <button
           className="bg-bg-panel shadow-m text-text px-6 py-3 rounded-xl font-bold text-lg text-center mt-2 transition-all active:scale-95"
-          onClick={() => setIsOpen(false)}
+          onClick={() => {
+            setIsOpen(false);
+            window.dispatchEvent(new Event("open-contact-popup"));
+          }}
         >
-          Carer login
-        </Link>
+          Book a demo
+        </button>
       </div>
 
     </nav>

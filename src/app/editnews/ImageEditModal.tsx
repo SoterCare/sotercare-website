@@ -5,7 +5,7 @@ import ReactCrop, { centerCrop, makeAspectCrop } from 'react-image-crop';
 import type { Crop, PixelCrop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import { X, RotateCcw, RotateCw, Loader2, Check, Pencil } from 'lucide-react';
-import { uploadNewsImageAction } from '../dashboard/news-actions';
+import { uploadNewsImageAction } from './news-actions';
 import { rotateImageSrc, getCroppedBlob } from './cropImage';
 
 type RatioKey = 'free' | '16:9' | '4:3' | '1:1' | '3:4' | '9:16';

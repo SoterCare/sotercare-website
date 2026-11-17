@@ -10,7 +10,7 @@ import {
 import ImageEditModal from './ImageEditModal';
 import type { NewsArticle, NewsData, ContentBlock } from '@/types/news';
 import { sortArticles } from '@/lib/news-sort';
-import { saveNewsAction, uploadNewsImageAction } from '../dashboard/news-actions';
+import { saveNewsAction, uploadNewsImageAction } from './news-actions';
 
 function slugify(str: string): string {
   return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
