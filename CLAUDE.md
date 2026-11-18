@@ -49,7 +49,7 @@ It was renamed from `web-dev-v2` with its full history. The B2B plan for this re
 - Every other project links the hub's knowledge base (and the projects it talks to), instead of copying plan text.
 
 ```
-sotercare-pcb-designs ── Rev A board (Rev B = pilot band, D-102) ──► sotercare-firmware (thigh band)
+sotercare-pcb ── Rev A board (Rev B = pilot band, D-102) ──► sotercare-firmware (thigh band)
 band ── UDP + AES-CCM over facility Wi-Fi (06) ──► sotercare-edge-gateway (= nurse station, 1 per home)
 staff phones ◄── local MQTT over WSS (alerts, claims, presence) ── gateway
 gateway ── MQTT/TLS to AWS IoT Core → SQS (Wi-Fi or LTE) ──► sotercare-backend
