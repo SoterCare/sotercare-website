@@ -34,10 +34,10 @@ It was renamed from `web-dev-v2` with its full history. The B2B plan for this re
 - Which docs this repo needs: `16-Repos-and-Ownership.md` §3.
 - `D-xx` / `O-x` refer to `19-Decisions-and-Open-Items.md`, the decision log. **When docs disagree, 19 wins.**
 - Old code to start from: `17-Old-Code-Carry-Over.md`.
-- Build order and checkpoints: `18-Build-Plan-2-Weeks.md`:
-  - a Day 0 gate, then daily integration checkpoints;
-  - **Day 14 = release candidate (RC)** of the full software system on simulators, ESP32-C6 dev kits and a Pi 5 gateway (D-77);
-  - then a scheduled **follow-on** (weeks 3–4, Days 15–24 in each repo's `docs/plan.md`) before a separate pilot gate.
+- Build order and checkpoints: `18-Build-Plan-2-Weeks.md` ("Build Plan to 28 Nov"):
+  - **Day 0 gate 18–19 Nov** (every repo's spec + plan, SerenEdge projects, cut-over), then dated daily checkpoints CP1–CP8 (20–27 Nov);
+  - **development complete on 28 Nov 2026** (D-115): all 37 acceptance scenarios green on simulators, ESP32-C6 dev kits / Rev A boards and a Pi 5 gateway;
+  - if a checkpoint slips, the **cut order** in 18 §10.2 applies (D-116); the safety core is never cut.
 
 **SerenEdge (D-103):** no new repos. **Each repo is one SerenEdge project**, and projects are connected through SerenEdge's **linked knowledge bases**, so any project can ask another's.
 - The **`sotercare-contracts` project is the hub:** its knowledge base holds the full b2b-plan, which is committed into `sotercare-contracts/docs/b2b-plan/` at the Day 0 gate.
