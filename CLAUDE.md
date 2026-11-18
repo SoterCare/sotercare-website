@@ -41,7 +41,7 @@ It was renamed from `web-dev-v2` with its full history. The B2B plan for this re
 - Old code to start from: `17-Old-Code-Carry-Over.md`.
 - Build order and checkpoints: `18-Build-Plan-2-Weeks.md` ("Build Plan to 28 Nov"):
   - **Day 0 gate 18–19 Nov** (every repo's spec + plan, SerenEdge projects, cut-over), then dated daily checkpoints CP1–CP8 (20–27 Nov);
-  - **development complete on 28 Nov 2026** (D-115): all 37 acceptance scenarios green on simulators, ESP32-C6 dev kits / Rev A boards and a Pi 5 gateway;
+  - **development complete on 28 Nov 2026** (D-115): the acceptance scenarios for its tier green (18 §0, §9; priorities D-133) on simulators, ESP32-C6 dev kits / Rev A boards and a Pi 5 gateway;
   - if a checkpoint slips, the **cut order** in 18 §10.2 applies (D-116); the safety core is never cut.
 
 **SerenEdge (D-103):** no new repos. **Each repo is one SerenEdge project**, and projects are connected through SerenEdge's **linked knowledge bases**, so any project can ask another's.
@@ -77,7 +77,7 @@ sotercare-website (sotercare.com), sotercare-links (links.sotercare.com): standa
 - **Silo tenancy** (D-31): one tenant per request / case; never hold two tenants' data in one operation.
 - **AWS `ap-south-1`**; **Bedrock** is the only LLM provider (D-07).
 - **Translation-ready UI** (D-26): no hard-coded user-facing strings.
-- **Build from the old repos' work** (D-20), keeping git history.
+- **Build from the old repos' work** (D-20), keeping git history, **except `sotercare-iit`**: competition rule, original work only, no old code (D-125).
 
 **Git and commits:**
 - Protected `main`, PRs with CI (lint, typecheck, tests, contract tests against the pinned contracts version). SerenEdge tasks merge to `dev`; a release PR moves `dev` → `main` (O-23).
