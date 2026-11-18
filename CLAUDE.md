@@ -27,9 +27,14 @@ It was renamed from `web-dev-v2` with its full history. The B2B plan for this re
 ## Rules
 - Pushing to `main` deploys the public site; check the preview
 
+## Design
+- This site is the **brand source**: URW Geometric (`public/fonts`), logo blue `#A0CBDB`, ink `#3D7E93`, `#FAFAFA` + dot grid, `shadow-m`, and the logos in `public/assets`. They are documented in `b2b-plan/22-Design-System.md` and copied to `sotercare-contracts/design/` (tokens + assets) for the product apps.
+- **Stay consistent:** if a brand colour, font or logo changes here, update `sotercare-contracts/design/tokens.json` / `assets/` and 22 in the same week.
+- Known gaps: `* { font-family: "URWGeometric" }` has no fallback stack; navbar links `#797979` are 4.17:1 on `#FAFAFA` (below AA); `favicon.ico` has 32 × 32 only; the font is a MyFonts webfont kit (licence check, `22` §14).
+
 ## How the SoterCare B2B platform fits together
 
-**Plan:** `D:\SoterCare\Github-B2B\b2b-plan\` (v2: docs 01–21, one topic per file).
+**Plan:** `D:\SoterCare\Github-B2B\b2b-plan\` (v2: docs 01–22, one topic per file; 22 = design system, tokens in `sotercare-contracts/design/`).
 - Start with `README.md`, `01-Product-and-Scope.md` and `02-System-Architecture.md`.
 - Which docs this repo needs: `16-Repos-and-Ownership.md` §3.
 - `D-xx` / `O-x` refer to `19-Decisions-and-Open-Items.md`, the decision log. **When docs disagree, 19 wins.**
@@ -54,7 +59,7 @@ backend ── REST + Socket.IO ──► sotercare-console (facility), sotercar
 backend ── medication records, dose rounds, marks, MAR (21; not alerts, never via the gateway) ──► console, mobile
 backend ── SNS → APNs / FCM push (alerts; medication round reminders) ──► sotercare-mobile
 backend ── REST /v1/ops ──► sotercare-ops-console (SoterCare staff)
-backend ── outbox → SQS events, S3 Parquet, internal API (medication: counts only) ──► sotercare-agents (agents + ARIA)
+backend ── outbox → SQS events, S3 Parquet, internal API (medication: counts only) ──► sotercare-agents (agents + ARIA; GitHub `sotercare-iit`, D-125)
 sotercare-contracts ── schemas + generated types; SerenEdge hub (b2b-plan) ──► firmware, gateway, backend, agents, consoles, mobile
 sotercare-infra ── provisions AWS + per-tenant resources ──► all cloud parts
 sotercare-studio ── records ──► sotercare-iot-dataset (data + model training) ── gait model ──► gateway
